@@ -73,6 +73,7 @@ export default function AdminLayout() {
             }
             
             const isActive = location.pathname === link.href;
+            const Icon = link.icon;
             return (
               <Link 
                 key={link.name} 
@@ -80,7 +81,7 @@ export default function AdminLayout() {
                 onClick={() => setSidebarOpen(false)}
                 className={`sidebar-link ${isActive ? 'sidebar-link-active' : ''}`}
               >
-                <link.icon className="w-5 h-5" />
+                {Icon && <Icon className="w-5 h-5" />}
                 {link.name}
               </Link>
             );

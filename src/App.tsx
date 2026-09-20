@@ -27,6 +27,8 @@ import RegisterPage from './pages/auth/RegisterPage';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import AdminLayout from './layouts/AdminLayout';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminTournamentsPage from './pages/admin/AdminTournamentsPage';
+import AdminTeamsPage from './pages/admin/AdminTeamsPage';
 
 // Placeholder pages
 function MatchDetailPage() {
@@ -83,4 +85,42 @@ export default function App() {
           <Route path="/tournaments/:id" element={<TournamentDetailPage />} />
           <Route path="/teams" element={<TeamsPage />} />
           <Route path="/teams/:id" element={<TeamDetailPage />} />
-          <Route
+          <Route path="/players" element={<PlayersPage />} />
+          <Route path="/players/:id" element={<PlayerProfilePage />} />
+          <Route path="/academy" element={<AcademyPage />} />
+          <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsArticlePage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/membership" element={<MembershipPage />} />
+          <Route path="/membership/apply" element={<MembershipPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/matches/:id" element={<MatchDetailPage />} />
+        </Route>
+
+        {/* Admin Dashboard */}
+        <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="tournaments" element={<AdminTournamentsPage />} />
+            <Route path="matches" element={<AdminPlaceholder />} />
+            <Route path="teams" element={<AdminTeamsPage />} />
+
+            <Route path="players" element={<AdminPlaceholder />} />
+            <Route path="members" element={<AdminPlaceholder />} />
+            <Route path="academy" element={<AdminPlaceholder />} />
+            <Route path="facilities" element={<AdminPlaceholder />} />
+            <Route path="news" element={<AdminPlaceholder />} />
+            <Route path="gallery" element={<AdminPlaceholder />} />
+            <Route path="sponsors" element={<AdminPlaceholder />} />
+            <Route path="messages" element={<AdminPlaceholder />} />
+            <Route path="settings" element={<AdminPlaceholder />} />
+          </Route>
+        </Route>
+
+        {/* 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
